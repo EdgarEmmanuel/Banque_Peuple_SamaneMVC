@@ -1,29 +1,26 @@
 <?php
-
-namespace App\Entity;
-
-use App\Repository\AgencesRepository;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass=AgencesRepository::class)
+ * @Entity(repositoryClass=AgencesRepository::class)
  */
 class Agences
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @Id()
+     * @GeneratedValue()
+     * @Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Column(type="string", length=255, nullable=true)
      */
     private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Column(type="string", length=255, nullable=true)
      */
     private $agence;
 

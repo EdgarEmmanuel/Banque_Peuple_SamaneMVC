@@ -1,30 +1,27 @@
 <?php
-
-namespace App\Entity;
-
-use App\Repository\CompteEpargneRepository;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass=CompteEpargneRepository::class)
+ * @Entity(repositoryClass=CompteEpargneRepository::class)
  */
 class CompteEpargne
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @Id()
+     * @GeneratedValue()
+     * @Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Comptes::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @OneToOne(targetEntity=Comptes::class, cascade={"persist", "remove"})
+     * @JoinColumn(nullable=false)
      */
     private $compte_id;
 
     /**
-     * @ORM\Column(type="float")
+     * @Column(type="float")
      */
     private $solde;
 

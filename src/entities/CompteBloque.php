@@ -1,35 +1,32 @@
 <?php
-
-namespace App\Entity;
-
-use App\Repository\CompteBloqueRepository;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass=CompteBloqueRepository::class)
+ * @Entity(repositoryClass=CompteBloqueRepository::class)
  */
 class CompteBloque
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @Id()
+     * @GeneratedValue()
+     * @Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Comptes::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @OneToOne(targetEntity=Comptes::class, cascade={"persist", "remove"})
+     * @JoinColumn(nullable=false)
      */
     private $id_compte;
 
     /**
-     * @ORM\Column(type="integer")
+     * @Column(type="integer")
      */
     private $solde;
 
     /**
-     * @ORM\Column(type="string")
+     * @Column(type="string")
      */
     private $date_deblocage;
 
@@ -38,12 +35,12 @@ class CompteBloque
         return $this->id;
     }
 
-    public function getIdCompte(): ?Comptes
+    public function getIdCompte()
     {
         return $this->id_compte;
     }
 
-    public function setIdCompte(Comptes $id_compte): self
+    public function setIdCompte($id_compte): self
     {
         $this->id_compte = $id_compte;
 

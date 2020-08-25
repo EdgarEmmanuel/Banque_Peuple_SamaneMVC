@@ -1,44 +1,40 @@
 <?php
-
-namespace App\Entity;
-
-use App\Repository\AgiosRepository;
-use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
- * @ORM\Entity(repositoryClass=AgiosRepository::class)
+ * @Entity(repositoryClass=AgiosRepository::class)
  */
 class Agios
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @Id()
+     * @GeneratedValue()
+     * @Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="float")
+     * @Column(type="float")
      */
     private $montant;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Column(type="string", length=255)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @Column(type="integer")
      */
     private $enumeration;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @Column(type="date", nullable=true)
      */
     private $date_fin_contexte;
 
     /**
-     * @ORM\Column(type="date")
+     * @Column(type="date")
      */
     private $debut_contexte;
 

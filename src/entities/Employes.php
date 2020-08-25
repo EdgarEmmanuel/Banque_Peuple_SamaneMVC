@@ -1,49 +1,45 @@
 <?php
-
-namespace App\Entity; 
-
-use App\Repository\EmployesRepository;
-use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
- * @ORM\Entity(repositoryClass=EmployesRepository::class)
+ * @Entity(repositoryClass=EmployesRepository::class)
  */
 class Employes
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @Id()
+     * @GeneratedValue()
+     * @Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Column(type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Column(type="string", length=255, nullable=true)
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Column(type="string", length=255, nullable=true)
      */
     private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Column(type="string", length=255, nullable=true)
      */
     private $telephone;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Column(type="string", length=255, nullable=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Column(type="integer", nullable=true)
      */
     private $id_agence;
 

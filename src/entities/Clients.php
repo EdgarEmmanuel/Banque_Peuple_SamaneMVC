@@ -1,34 +1,31 @@
 <?php
-
-namespace App\Entity;
-
-use App\Repository\ClientsRepository;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass=ClientsRepository::class)
+ * @Entity(repositoryClass=ClientsRepository::class)
  */
 class Clients
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @Id()
+     * @GeneratedValue()
+     * @Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Column(type="string", length=255, nullable=true)
      */
     private $telephone;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Column(type="string", length=255)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Column(type="string", length=255)
      */
     private $matricule;
 

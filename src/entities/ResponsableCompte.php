@@ -1,39 +1,36 @@
 <?php
-
-namespace App\Entity;
-
-use App\Repository\ResponsableCompteRepository;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass=ResponsableCompteRepository::class)
+ * @Entity(repositoryClass=ResponsableCompteRepository::class)
  */
 class ResponsableCompte
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @Id()
+     * @GeneratedValue()
+     * @Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Column(type="string", length=255, nullable=true)
      */
     private $login;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Column(type="string", length=255, nullable=true)
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Column(type="string", length=255, nullable=true)
      */
     private $matricule;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Column(type="integer", nullable=true)
      */
     private $id_employe;
 

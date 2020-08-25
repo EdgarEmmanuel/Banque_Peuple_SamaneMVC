@@ -1,45 +1,42 @@
 <?php
-
-namespace App\Entity;
-
-use App\Repository\CompteCourantRepository;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass=CompteCourantRepository::class)
+ * @Entity(repositoryClass=CompteCourantRepository::class)
  */
 class CompteCourant
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @Id()
+     * @GeneratedValue()
+     * @Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Column(type="string", length=255)
      */
     private $adresse_employeur;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Column(type="string", length=255)
      */
     private $nom_entreprise;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Column(type="string", length=255)
      */
     private $raison_social;
 
     /**
-     * @ORM\Column(type="integer")
+     * @Column(type="integer")
      */
     private $solde;
 
     /**
-     * @ORM\OneToOne(targetEntity=Comptes::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @OneToOne(targetEntity=Comptes::class, cascade={"persist", "remove"})
+     * @JoinColumn(nullable=false)
      */
     private $id_compte;
 

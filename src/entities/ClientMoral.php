@@ -1,50 +1,47 @@
 <?php
-
-namespace App\Entity;
-
-use App\Repository\ClientMoralRepository;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Annotation as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass=ClientMoralRepository::class)
+ * @Entity(repositoryClass=ClientMoralRepository::class)
  */
 class ClientMoral
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @Id()
+     * @GeneratedValue()
+     * @Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Clients::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @OneToOne(targetEntity=Clients::class, cascade={"persist", "remove"})
+     * @JoinColumn(nullable=false)
      */
     private $idClient;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Column(type="string", length=255)
      */
     private $type_entreprise;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Column(type="string", length=255)
      */
     private $activite_entreprise;
 
     /**
-     * @ORM\Column(type="integer")
+     * @Column(type="integer")
      */
     private $ninea;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Column(type="string", length=255)
      */
     private $adresse_entreprise;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Column(type="string", length=255)
      */
     private $nom_entreprise;
 
@@ -53,12 +50,12 @@ class ClientMoral
         return $this->id;
     }
 
-    public function getIdClient(): ?Clients
+    public function getIdClient()
     {
         return $this->idClient;
     }
 
-    public function setIdClient(Clients $idClient): self
+    public function setIdClient( $idClient): self
     {
         $this->idClient = $idClient;
 
