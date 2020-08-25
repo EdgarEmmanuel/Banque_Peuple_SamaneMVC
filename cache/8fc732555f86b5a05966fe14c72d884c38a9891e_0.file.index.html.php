@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-08-25 17:04:55
+/* Smarty version 3.1.30, created on 2020-08-25 18:05:49
   from "/opt/lampp/htdocs/samaneBanque/src/view/welcome/index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f452897281a48_22796590',
+  'unifunc' => 'content_5f4536dd9142c2_39008426',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8fc732555f86b5a05966fe14c72d884c38a9891e' => 
     array (
       0 => '/opt/lampp/htdocs/samaneBanque/src/view/welcome/index.html',
-      1 => 1598367894,
+      1 => 1598371523,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f452897281a48_22796590 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f4536dd9142c2_39008426 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -53,7 +53,8 @@ public/css/login.css" />
         <div class="brand">Sign In</div>
     </header>
     <div class="div_form">
-        <form action="/verify" onsubmit="return post()" method="post">
+        <form action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+User/handleUser"  method="post">
             <select name="type" id="type_employe">
                 <option value="">...</option>
                 <option value="responsable">Responsable Compte</option>

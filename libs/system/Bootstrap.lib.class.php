@@ -12,7 +12,7 @@ use src\controller as Basecontroller;
 class Bootstrap{
         public function __construct(){
             $error = new SM_Error();
-			//$model = new Model();
+			$model = new Model();
 			/**
 			 * V1.9.2
 			 */

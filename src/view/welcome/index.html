@@ -23,7 +23,7 @@
         <div class="brand">Sign In</div>
     </header>
     <div class="div_form">
-        <form action="/verify" onsubmit="return post()" method="post">
+        <form action="{$url_base}User/handleUser"  method="post">
             <select name="type" id="type_employe">
                 <option value="">...</option>
                 <option value="responsable">Responsable Compte</option>
