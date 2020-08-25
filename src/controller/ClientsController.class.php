@@ -5,16 +5,20 @@ use src\model\ClientsRepository;
 
 use src\model\ClientIndependantRepository;
 
+use src\model\ClientSalarieRepository;
+
 
 class ClientsController extends Controller
 {  
     private $clientRepo ;
     private $IndeRepo;
+    private $SalarieRespo
 
     public function __construct(){
        parent::__construct();
         $this->clientRepo = new ClientsRepository();
         $this->IndeRepo = new ClientIndependantRepository();
+        $this->SalarieRespo = new ClientSalarieRepository();
     }
 
 
@@ -92,29 +96,24 @@ class ClientsController extends Controller
 
 
    
-    // public function insertCSalarie(Request $request)
-    // {
-    //     //insert in client salarie
-    //     $CSalarie = new ClientSalarie();
+    public function insertCSalarie()
+    {
+        //insert in client salarie
+        $CSalarie = new ClientSalarie();
 
-    //     $CSalarie->setIdClient($this->insertFirstINClient($request->request->get("matricule"),$request->request->get("email"),$request->request->get("telephone")));
+        $CSalarie->setIdClient($this->insertFirstINClient($matricule,$email,$telephone));
 
-    //     $CSalarie->setCni($request->request->get("cni"));
-    //     $CSalarie->setNom($request->request->get("nom"));
-    //     $CSalarie->setPrenom($request->request->get("prenom"));
-    //     $CSalarie->setProfession($request->request->get("profession"));
-    //     $CSalarie->setNomEntreprise($request->request->get("nom_Entreprise"));
-    //     $CSalarie->setAdresseEntreprise($request->request->get("adresseforCl"));
+        $CSalarie->setCni($cni);
+        $CSalarie->setNom($nom);
+        $CSalarie->setPrenom($prenom);
+        $CSalarie->setProfession($profession);
+        $CSalarie->setNomEntreprise($nom_Entreprise);
+        $CSalarie->setAdresseEntreprise($adresseforCl);
 
-    //     //insertion
-    //     $this->f_entity->persist($CSalarie);
-    //     $this->f_entity->flush();
+        
+        if(  $this->SalarieRespo->insertSalarie($CSalarie) != 0){
+            return $this->redirect("Pages/getPageCni");
+        }
 
-
-    //     $res = $CSalarie->getId();
-    //     if( $res!=0){
-    //         return $this->redirectToRoute("cniPage");
-    //     }
-
-    // }
+    }
 }
