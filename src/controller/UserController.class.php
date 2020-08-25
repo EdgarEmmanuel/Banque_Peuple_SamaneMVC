@@ -27,9 +27,12 @@ class UserController extends Controller
 
                          $password = $_POST["password"];
 
-                         $repository = new ResponsableCompteRepository;
+                         $repository = new ResponsableCompteRepository();
 
                          $data = $repository->getOneByParams($login,$password);
+
+                        //  var_dump($data);
+                        //  die;
 
                 break;
         }

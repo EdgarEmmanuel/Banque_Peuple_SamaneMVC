@@ -3,8 +3,6 @@ namespace src\model;
 
 use libs\system\Model;
 
-
-
 class ResponsableCompteRepository extends Model{
 
     public function __construct(){
@@ -12,9 +10,13 @@ class ResponsableCompteRepository extends Model{
     }
 
     public function getOneByParams($login,$mdp){
-        $data=$this->db
-            ->createQuery("SELECT cl from ResponsableCompte cl")
-            ->getResult();
+        if($this->db != null)
+		{
+			$data=$this->db->getRepository('ResponsableCompte')->findBy(array(
+                'login' => $login,
+                'password' => $mdp
+            ));
+		}
 
                 if($data!=null){
                     return $data;

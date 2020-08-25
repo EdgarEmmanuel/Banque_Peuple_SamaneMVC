@@ -3,7 +3,8 @@ use Doctrine\ORM\Annotation as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @Entity(repositoryClass=ClientsRepository::class)
+ * @Entity 
+ * @Table(name="Clients")
  */
 class Clients
 {

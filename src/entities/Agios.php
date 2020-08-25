@@ -2,7 +2,8 @@
 use Doctrine\ORM\Annotation as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 /**
- * @Entity(repositoryClass=AgiosRepository::class)
+ * @Entity 
+ * @Table(name="Agios")
  */
 class Agios
 {
