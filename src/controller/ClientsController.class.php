@@ -1,14 +1,22 @@
 <?php
 use libs\system\Controller;
 
+use src\model\ClientsRepository;
+
+use src\model\ClientIndependantRepository;
 
 
 class ClientsController extends Controller
 {  
-   
+    private $clientRepo ;
+    private $IndeRepo;
+
     public function __construct(){
        parent::__construct();
+        $this->clientRepo = new ClientsRepository();
+        $this->IndeRepo = new ClientIndependantRepository();
     }
+
 
     public function insertFirstINClient($mat,$mail,$tel){
         //insert in the client
@@ -20,10 +28,8 @@ class ClientsController extends Controller
 
         $client->setMatricule($mat);
 
-        $this->f_entity->persist($client);
-        $this->f_entity->flush();
-
-        return $client;
+        return $this->clientRepo->addClient($client);
+       
     }
 
 
@@ -57,32 +63,32 @@ class ClientsController extends Controller
 
     // }
 
-    // public function insertCIndependant(Request $request){
+    public function insertCIndependant(){
+        extract($_POST);
 
-    //     $client_independant = new ClientIndependant();
+        $client_independant = new ClientIndependant();
 
-    //     $client_independant->setIdClient($this->insertFirstINClient($request->request->get("matricule"),
-    //     $request->request->get("email"),$request->request->get("telephone")));
+        $client_independant->setIdClient($this->insertFirstINClient($matricule,$email,$telephone));
 
-    //     $client_independant->setNom($request->request->get("nom"));
+        $client_independant->setNom($nom);
 
-    //     $client_independant->setPrenom($request->request->get("prenom"));
+        $client_independant->setPrenom($prenom);
 
-    //     $client_independant->setCni($request->request->get("cni"));
+        $client_independant->setCni($cni);
 
-    //     $client_independant->setActivite($request->request->get("activite"));
+        $client_independant->setActivite($activite);
 
-    //     $client_independant->setAdresse($request->request->get("localisation"));
+        $client_independant->setAdresse($localisation);
 
-    //     $this->f_entity->persist($client_independant);
-    //     $this->f_entity->flush();
+        $data=$this->IndeRepo->insertIndependant($client_independant);
 
-    //     if($client_independant->getId()!=0){
-    //         return $this->redirectToRoute('cniPage');
-    //     }else{
-    //         return $this->redirectToRoute("insertIndependant");
-    //     }
-    // }
+
+        if( $data != 0){
+            return $this->view->redirect('Pages/getPageCni');
+        }else{
+            return $this->view->redirect("clients/cNSalarie");
+        }
+    }
 
 
    

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-08-25 21:33:54
+/* Smarty version 3.1.30, created on 2020-08-25 21:47:21
   from "/opt/lampp/htdocs/samaneBanque/src/view/clients/cNSalarie.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f4567a2677aa5_34680277',
+  'unifunc' => 'content_5f456ac9cd0bf4_07654708',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e70ac3fadf3af3937443b98ebade484791c57b7f' => 
     array (
       0 => '/opt/lampp/htdocs/samaneBanque/src/view/clients/cNSalarie.html',
-      1 => 1598384027,
+      1 => 1598384596,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f4567a2677aa5_34680277 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f456ac9cd0bf4_07654708 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -44,7 +44,7 @@ Pages/getPageCni">ACCUEIL</a></h1>
 <main>
     <div class="form">
             <form action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Clients/insertIndependant" method="post">
+Clients/insertCIndependant" method="post">
             <!-- form for adding Independant client -->
             <div class="Independant">
                 <h2>INFORMATIONS CLIENT INDEPENDANT</h2>

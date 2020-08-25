@@ -10,6 +10,14 @@ class ClientsRepository extends Model{
         parent::__construct();
     }
 
+
+    public function addClient($client){
+        $this->db->persist($client);
+        $this->db->flush();
+
+        return $client;
+    }
+
    
 
     public function getMatricule($params){

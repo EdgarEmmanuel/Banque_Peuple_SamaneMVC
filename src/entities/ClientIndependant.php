@@ -15,7 +15,7 @@ class ClientIndependant
     private $id;
 
     /**
-     * @OneToOne(targetEntity=Clients::class, cascade={"persist", "remove"})
+     * @OneToOne(targetEntity="Clients", cascade={"persist", "remove"})
      * @JoinColumn(nullable=false)
      */
     private $idClient;
