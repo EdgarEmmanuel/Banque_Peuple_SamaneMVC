@@ -1,21 +1,20 @@
-{% extends 'base.html.twig' %}
-
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/cni.css') }}" />
-{% endblock %}
-
-
-{% block body %}
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+        <title>ADMIN PAGE</title>
+        <link rel="stylesheet" href="{$url_base}public/css/cni.css" />
+    </head>
+<body>
     <header>
         <div class="brand">
             Banque du Peuple
         </div>
     </header>
     <main>
-     <input type="text" value="Matricule : {{ app.getSession().get('matricule') }} " placeholder="" id="caissiere" readonly/>
-        <a href="/logout" id="a" >Deconnexion</a><br>
-        <input type="text" value="Nom Complet : {{ app.getSession().get('nomComplet') }} " placeholder="" id="nom" readonly/><br>
+     <input type="text" value="Matricule - {$mat}"  id="caissiere" readonly/>
+        <a href="{$url_base}Pages/logout" id="a" >Deconnexion</a><br>
+        <input type="text" value="Nom Complet - {$name}" id="nom" readonly/><br>
         <form action="/verifyMat" method="post" id="formGest">
             <label id="label"  for="">ANCIEN CLIENT</label><br/>
             <input type="text" placeholder="MATRICULE CLIENT" name="matricule" id="cni" autocomplete="off" required /> <br>
@@ -23,13 +22,10 @@
         </form>
     </main> <br/><br/>
     <a class="new" id="add">NOUVEAU CLIENT</a> <br/><br/><br/><br/>
-    <a class="addS" href="/clients/salarie.html" id="add">Nouveau Client Salarie </a> <br/><br/><br/><br/>
+    <a class="addS" href="{$url_base}Pages/getPageInsertCS" id="add">Nouveau Client Salarie </a> <br/><br/><br/><br/>
     <a class="addM" href="/clients/moral.html" id="add">Nouveau Client Moral </a> <br/><br/><br/><br/>
     <a class="addI" href="/clients/independant.html" id="add">Nouveau Client Independant </a>
 
-{% endblock %}
-
-
-{% block javascripts %}
-    <script src="{{ asset('js/cni.js') }}" type="text/javascript"></script>
-{% endblock %}
+    <script src="{$url_base}public/js/cni.js" type="text/javascript"></script>
+</body>
+</html>

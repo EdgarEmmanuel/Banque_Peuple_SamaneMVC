@@ -49,29 +49,33 @@ class PagesController extends Controller
     
     public function getPageCni()
     {
-        return $this->render('admin/cni.html.twig');
+        session_start();
+        $data["mat"]=$_SESSION["matricule"];
+        $data["name"]=$_SESSION["nomEmp"];
+
+        return $this->view->load('admin/cni',$data);
     }
 
     public function getPageIndependant(){
         $donnees["matricule_inde"] = $this->getMatricule("I");
-        return $this->render("clients/cNSalarie.html.twig",$donnees);
+        return $this->view->load("clients/cNSalarie",$donnees);
     }
 
     public function getPageMoral(){
         $donnees["matriculeMoral"] = $this->getMatricule("M");
-        return $this->render("clients/cMoral.html.twig",$donnees);
+        return $this->view->load("clients/cMoral",$donnees);
     }
 
     
     public function logout(){
-        return $this->render("test/index.html.twig");
+        echo "test";
     }
 
     public function getPageInsertCS(){
             //put in the array to send 
             $donnees["matricules"] = $this->getMatricule("S");
           
-        return $this->render("clients/cSalarie.html.twig",$donnees);
+        return $this->view->load("clients/cSalarie",$donnees);
     }
 
 
@@ -82,7 +86,7 @@ class PagesController extends Controller
         //default date deblocage 
         $data["date_debloc"] = \Date("Y-m-d",strtotime('+1 year'));
 
-        return $this->render("comptes/addCompte.html.twig",$data);
+        return $this->view->load("comptes/addCompte",$data);
     }
 
 

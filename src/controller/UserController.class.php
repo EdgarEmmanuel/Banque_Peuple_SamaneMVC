@@ -32,7 +32,9 @@ class UserController extends Controller
                          $data = $repository->getOneByParams($login,$password);
 
                          if($data==null){
+
                             return $this->view->load("welcome/index");
+
                          }else{
 
                             foreach($data as $d){
@@ -62,10 +64,24 @@ class UserController extends Controller
                             //get the name of the Agence 
                             $nameAgence = $dataAgence->getAgence();
 
-                            var_dump($nameAgence);
-
     
-                            die;
+
+                            //set all the session for the application 
+                            session_start();
+
+                            $_SESSION["matricule"] = $matricule;
+
+                            $_SESSION["idEmp"] = $idEmp;
+
+                            $_SESSION["idAgence"] = $idAgence;
+
+                            $_SESSION["nomEmp"] =  $NomComplet;
+
+                            $_SESSION["nameAgence"] = $nameAgence;
+
+
+
+                            return $this->view->redirect("Pages/getPageCni");
                             
                          }
 
@@ -74,6 +90,14 @@ class UserController extends Controller
                         
 
                 break;
+                case "administrateur": 
+                    echo "responsable";
+                         break;
+            
+                        case "caissiere": 
+                             echo "caissiere";
+                         break;
+                
         }
         //     case "responsable": 
         //                 //get the login
