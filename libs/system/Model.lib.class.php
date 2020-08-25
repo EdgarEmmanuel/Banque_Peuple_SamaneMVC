@@ -8,6 +8,9 @@
     VOUS ETES LIBRE DE TOUTE UTILISATION.
   ===================================================*/
 namespace libs\system;
+
+use PDOException;
+
 class Model
 {
         protected $db;

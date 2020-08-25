@@ -1,7 +1,7 @@
 <?php
 use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager,
-    Doctrine\ORM\Configuration;
+use Doctrine\ORM\EntityManager;
+use    Doctrine\ORM\Configuration;
 
 require_once "vendor/autoload.php";
 require "config/database.php";

@@ -15,7 +15,7 @@ $choix = "ORM";
 /** 
  * Turn to on or off your database
  */
-$etat = 'off'; //on or off
+$etat = 'on'; //on or off
 
 $orm = array(
               'dbname' => 'samaneBanque',//change your database name

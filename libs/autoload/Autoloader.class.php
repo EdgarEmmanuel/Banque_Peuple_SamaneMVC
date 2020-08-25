@@ -7,7 +7,10 @@
     POUR TOUTE MODIFICATION VISANT A L'AMELIORER.
     VOUS ETES LIBRE DE TOUTE UTILISATION.
   ===================================================*/
-	require_once 'config/welcome_controller.php';
+
+use libs\system\SM_Error;
+
+require_once 'config/welcome_controller.php';
   require 'config/database.php';
   require_once 'libs/rooting/rooting.conf.php';
   require_once 'libs/system/smarty/libs/Smarty.class.php';
