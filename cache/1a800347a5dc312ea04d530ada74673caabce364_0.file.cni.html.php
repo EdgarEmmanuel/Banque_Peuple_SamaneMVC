@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-08-25 20:58:12
+/* Smarty version 3.1.30, created on 2020-08-25 21:09:19
   from "/opt/lampp/htdocs/samaneBanque/src/view/admin/cni.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f455f44191779_00250881',
+  'unifunc' => 'content_5f4561df16d740_82717613',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1a800347a5dc312ea04d530ada74673caabce364' => 
     array (
       0 => '/opt/lampp/htdocs/samaneBanque/src/view/admin/cni.html',
-      1 => 1598381889,
+      1 => 1598382552,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f455f44191779_00250881 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f4561df16d740_82717613 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -29,6 +29,11 @@ function content_5f455f44191779_00250881 (Smarty_Internal_Template $_smarty_tpl)
         <title>ADMIN PAGE</title>
         <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 public/css/cni.css" />
+        <title>BANQUE PEUPLE</title>
+         <link rel="shortcut icon" href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+public/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+public/favicon.ico" type="image/x-icon"/>
     </head>
 <body>
     <header>
@@ -52,12 +57,10 @@ Pages/logout" id="a" >Deconnexion</a><br>
     <a class="new" id="add">NOUVEAU CLIENT</a> <br/><br/><br/><br/>
     <a class="addS" href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Pages/getPageInsertCS" id="add">Nouveau Client Salarie </a> <br/><br/><br/><br/>
-    <a class="addM" href="/clients/moral.html" id="add">Nouveau Client Moral </a> <br/><br/><br/><br/>
-    <a class="addI" href="/clients/independant.html" id="add">Nouveau Client Independant </a>
-
-
-
-
+    <a class="addM" href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+Pages/getPageMoral" id="add">Nouveau Client Moral </a> <br/><br/><br/><br/>
+    <a class="addI" href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+Pages/getPageIndependant" id="add">Nouveau Client Independant </a>
 
     <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>

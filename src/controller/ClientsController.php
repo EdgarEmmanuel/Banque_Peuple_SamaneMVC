@@ -1,13 +1,6 @@
 <?php
 use libs\system\Controller;
 
-// use App\Entity\Clients;
-
-// use App\Entity\ClientSalarie;
-
-// use App\Entity\ClientMoral;
-
-// use App\Entity\ClientIndependant;
 
 
 class ClientsController extends Controller
@@ -17,21 +10,21 @@ class ClientsController extends Controller
        parent::__construct();
     }
 
-    // public function insertFirstINClient($mat,$mail,$tel){
-    //     //insert in the client
-    //     $client = new Clients();
+    public function insertFirstINClient($mat,$mail,$tel){
+        //insert in the client
+        $client = new Clients();
 
-    //     $client->setTelephone($tel);
+        $client->setTelephone($tel);
 
-    //     $client->setEmail($mail);
+        $client->setEmail($mail);
 
-    //     $client->setMatricule($mat);
+        $client->setMatricule($mat);
 
-    //     $this->f_entity->persist($client);
-    //     $this->f_entity->flush();
+        $this->f_entity->persist($client);
+        $this->f_entity->flush();
 
-    //     return $client;
-    // }
+        return $client;
+    }
 
 
     // public function insertCMoral(Request $request){

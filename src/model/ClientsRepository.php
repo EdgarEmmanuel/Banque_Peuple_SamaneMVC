@@ -10,9 +10,64 @@ class ClientsRepository extends Model{
         parent::__construct();
     }
 
-    public function getMatriculeClient($letter){
+   
+
+    public function getMatricule($params){
+        switch($params){
+            case "I":
+                $data= $this->db
+                ->createQuery("SELECT count(ci.id) as num from Clients ci where substring(ci.matricule,1,3)='BCI' ")
+                ->getResult();
+
+                foreach($data as $d){
+                    $matricule = "BCI".((int)$d["num"]+1);
+                }
+            break;
+            case "S" : 
+                //query from the database 
+                $data = $this->db
+                ->createQuery("SELECT count(cl.id) as num from Clients cl where substring(cl.matricule,1,3)='BPS'")
+                ->getResult();
+
+                //set the matricule 
+                foreach($data as $d){
+                    $matricule = "BPS".((int)$d["num"] + 1);
+                }
+            break;
+
+            case "M" : 
+                $data = $this->db
+                ->createQuery("SELECT count(cm.id) as num from Clients cm where substring(cm.matricule,1,3)='BCM' ")
+                ->getResult();
         
+                foreach($data as $d){
+                    $matricule = "BCM".((int)$d["num"] +1);
+                }
+            break;
+
+        }
+        return $matricule;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

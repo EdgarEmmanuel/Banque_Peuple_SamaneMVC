@@ -1,50 +1,15 @@
 <?php
 use libs\system\Controller;
 
+use src\model\ClientsRepository;
+
 class PagesController extends Controller
 {
     private $enti;
-    private $clients;
 
     public function __construct(){
        parent::__construct();
-    }
-
-    public function getMatricule($params){
-        switch($params){
-            case "I":
-                $data= $this->enti
-                ->createQuery("SELECT count(ci.id) as num from App\Entity\Clients ci where substring(ci.matricule,1,3)='BCI' ")
-                ->getResult();
-
-                foreach($data as $d){
-                    $matricule = "BCI".((int)$d["num"]+1);
-                }
-            break;
-            case "S" : 
-                //query from the database 
-                $data = $this->enti
-                ->createQuery("SELECT count(cl.id) as num from App\Entity\Clients cl where substring(cl.matricule,1,3)='BPS'")
-                ->getResult();
-
-                //set the matricule 
-                foreach($data as $d){
-                    $matricule = "BPS".((int)$d["num"] + 1);
-                }
-            break;
-
-            case "M" : 
-                $data = $this->enti
-                ->createQuery("SELECT count(cm.id) as num from App\Entity\Clients cm where substring(cm.matricule,1,3)='BCM' ")
-                ->getResult();
-        
-                foreach($data as $d){
-                    $matricule = "BCM".((int)$d["num"] +1);
-                }
-            break;
-
-        }
-        return $matricule;
+       $this->enti = new ClientsRepository;
     }
     
     public function getPageCni()
@@ -57,26 +22,25 @@ class PagesController extends Controller
     }
 
     public function getPageIndependant(){
-        $donnees["matricule_inde"] = $this->getMatricule("I");
+        $donnees["matricule_inde"] = $this->enti->getMatricule("I");
         return $this->view->load("clients/cNSalarie",$donnees);
     }
 
     public function getPageMoral(){
-        $donnees["matriculeMoral"] = $this->getMatricule("M");
+        $donnees["matriculeMoral"] = $this->enti->getMatricule("M");
         return $this->view->load("clients/cMoral",$donnees);
-    }
-
-    
-    public function logout(){
-        echo "test";
     }
 
     public function getPageInsertCS(){
             //put in the array to send 
-            $donnees["matricules"] = $this->getMatricule("S");
-          
+            $donnees["matricules"] = $this->enti->getMatricule("S");
         return $this->view->load("clients/cSalarie",$donnees);
     }
+
+    public function logout(){
+        echo "test";
+    }
+
 
 
     public function getPageInsertCompte(){
