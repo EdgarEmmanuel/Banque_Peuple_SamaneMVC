@@ -12,7 +12,7 @@ class ClientsController extends Controller
 {  
     private $clientRepo ;
     private $IndeRepo;
-    private $SalarieRespo
+    private $SalarieRespo;
 
     public function __construct(){
        parent::__construct();
@@ -99,6 +99,7 @@ class ClientsController extends Controller
     public function insertCSalarie()
     {
         //insert in client salarie
+        extract($_POST);
         $CSalarie = new ClientSalarie();
 
         $CSalarie->setIdClient($this->insertFirstINClient($matricule,$email,$telephone));
@@ -112,7 +113,7 @@ class ClientsController extends Controller
 
         
         if(  $this->SalarieRespo->insertSalarie($CSalarie) != 0){
-            return $this->redirect("Pages/getPageCni");
+            return $this->view->redirect("Pages/getPageCni");
         }
 
     }
