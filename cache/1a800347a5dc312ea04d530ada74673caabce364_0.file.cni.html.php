@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-08-25 21:09:19
+/* Smarty version 3.1.30, created on 2020-08-27 10:40:44
   from "/opt/lampp/htdocs/samaneBanque/src/view/admin/cni.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f4561df16d740_82717613',
+  'unifunc' => 'content_5f47718c030044_47226982',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1a800347a5dc312ea04d530ada74673caabce364' => 
     array (
       0 => '/opt/lampp/htdocs/samaneBanque/src/view/admin/cni.html',
-      1 => 1598382552,
+      1 => 1598517635,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f4561df16d740_82717613 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f47718c030044_47226982 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">

@@ -7,18 +7,22 @@ use src\model\ClientIndependantRepository;
 
 use src\model\ClientSalarieRepository;
 
+use src\model\ClientMoralRepository;
+
 
 class ClientsController extends Controller
 {  
     private $clientRepo ;
     private $IndeRepo;
     private $SalarieRespo;
+    private $moralRepo;
 
     public function __construct(){
        parent::__construct();
         $this->clientRepo = new ClientsRepository();
         $this->IndeRepo = new ClientIndependantRepository();
         $this->SalarieRespo = new ClientSalarieRepository();
+        $this->moralRepo= new ClientMoralRepository();
     }
 
 
@@ -37,35 +41,30 @@ class ClientsController extends Controller
     }
 
 
-    // public function insertCMoral(Request $request){
-    //     $client_moral = new ClientMoral();
+    public function pageInsertMoral(){
+        extract($_POST);
+        $client_moral = new ClientMoral();
 
-    //     $client_moral->setIdClient($this->insertFirstINClient($request->request->get("matricule"),
-    //     $request->request->get("email"),$request->request->get("telephone")));
+        $client_moral->setIdClient($this->insertFirstINClient($matricule,$email,$telephone));
 
-    //     $client_moral->setActiviteEntreprise($request->request->get("activite"));
+        $client_moral->setActiviteEntreprise($activite);
 
-    //     $client_moral->setAdresseEntreprise($request->request->get("adresse"));
+        $client_moral->setAdresseEntreprise($adresse);
 
-    //     $client_moral->setTypeEntreprise($request->request->get("type"));
+        $client_moral->setTypeEntreprise($type);
 
-    //     $client_moral->setNomEntreprise($request->request->get("nom"));
+        $client_moral->setNomEntreprise($nom);
 
-    //     $client_moral->setNinea($request->request->get("ninea"));
+        $client_moral->setNinea($ninea);
 
 
-    //     $this->f_entity->persist($client_moral);
-    //     $this->f_entity->flush();
+        $res=$this->moralRepo->insertMoral($client_moral);
 
-    //     if($client_moral->getId()!=0){
-    //         $data["message"]="INSERTION CLIENT MORAL REUSSIE !!!";
-    //         return $this->redirectToRoute('cniPage',$data);
-    //     }else{
-    //         $data["message"]=" INSERTION NON REUSSIE !!!";
-    //         return $this->redirectToRoute('cniPage',$data);
-    //     }
+        if($res!=0){
+            return $this->view->redirect('Pages/getPageCni');
+        }
 
-    // }
+    }
 
     public function insertCIndependant(){
         extract($_POST);
@@ -87,11 +86,10 @@ class ClientsController extends Controller
         $data=$this->IndeRepo->insertIndependant($client_independant);
 
 
-        if( $data != 0){
+        if($data != 0){
             return $this->view->redirect('Pages/getPageCni');
-        }else{
-            return $this->view->redirect("clients/cNSalarie");
         }
+        
     }
 
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-08-25 21:23:06
+/* Smarty version 3.1.30, created on 2020-08-27 10:12:01
   from "/opt/lampp/htdocs/samaneBanque/src/view/clients/cSalarie.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f45651a7b59c9_71422246',
+  'unifunc' => 'content_5f476ad1c64583_39731868',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ff86e2f8c3afe9990e472582508a81680f1d77aa' => 
     array (
       0 => '/opt/lampp/htdocs/samaneBanque/src/view/clients/cSalarie.html',
-      1 => 1598383382,
+      1 => 1598515916,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f45651a7b59c9_71422246 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f476ad1c64583_39731868 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -48,7 +48,7 @@ Pages/getPageCni">ACCUEIL</a></h1>
     <div class="form">
             <!-- form for adding client salarie  -->
             <form action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
-Clients/insertSalarie" method="post">
+Clients/insertCSalarie" method="post">
                 <div class="salarie">
                     <h2>INFORMATIONS CLIENT SALARIE</h2>
                     <input type="text" name="nom" placeholder="nom" id="nom_salarie" autocomplete="off" required />
