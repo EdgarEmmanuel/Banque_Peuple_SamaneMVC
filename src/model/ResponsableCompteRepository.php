@@ -42,6 +42,17 @@ class ResponsableCompteRepository extends Model{
     }
 
 
+    public function getRespoById($id){
+        $data=$this->db->getRepository("ResponsableCompte")->find($id);
+
+        // foreach($data as $d){
+        //     $id = $d->getId();
+        // }
+
+        return $data;
+    }
+
+
     public function getAllInfoEmp($id){
         if($this->db != null){
             $data = $this->employesRepo-> getEmployeById($id);

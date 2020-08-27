@@ -19,6 +19,11 @@ class ClientsRepository extends Model{
         return $client;
     }
 
+
+    public function find($id){
+        return $this->db->getRepository("Clients")->find($id);
+    }
+
     
 
     public function getMatricule($params){

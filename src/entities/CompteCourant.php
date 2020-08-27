@@ -36,7 +36,7 @@ class CompteCourant
     private $solde;
 
     /**
-     * @OneToOne(targetEntity=Comptes::class, cascade={"persist", "remove"})
+     * @OneToOne(targetEntity="Comptes", cascade={"persist", "remove"})
      * @JoinColumn(nullable=false)
      */
     private $id_compte;

@@ -5,18 +5,31 @@ use src\model\ClientsRepository;
 
 use src\model\ClientSalarieRepository;
 
+use src\model\ComptesRepository;
+
+use src\model\AgencesRepository;
+
+use src\model\ResponsableCompteRepository;
+
+use src\model\CompteCourantRepository;
+
 class CompteController extends Controller
 {
     private $ClientM;
     private $ClientI;
     private $agence;
-    private $clients;
+    private $compte;
     private $respo;
+    private $courant;
 
     public function __construct(){
         parent::__construct();
         $this->Client = new ClientsRepository;
         $this->clients = new ClientSalarieRepository;
+        $this->compte = new ComptesRepository;
+        $this->agence = new AgencesRepository;
+        $this->respo = new ResponsableCompteRepository;
+        $this->courant = new CompteCourantRepository;
     }
    
     public function verifyMatricule(){
@@ -119,10 +132,6 @@ class CompteController extends Controller
                                     //redirection 
                                     return $this->view->redirect("Pages/getPageInsertCompte");
 
-
-
-
-
                             }
 
                             break;
@@ -175,13 +184,11 @@ class CompteController extends Controller
     private  function insertInCompte($idEmp,$idAg,$idClient,$dateOuv,$cleRib,$numAcc){
         $compte = new Comptes();
 
-        $compte->setIdAgence($this->agence->find($idAg));
+        $compte->setIdAgence($this->agence->getOneAgenceById($idAg));
 
-        
-        $compte->setIdClient($this->clients->find($idClient));
+        $compte->setIdClient($this->Client->find($idClient));
 
-
-        $compte->setIdRespoCompte($this->respo->find($idEmp));
+        $compte->setIdRespoCompte($this->respo->getRespoById($idEmp));
 
         $compte->setDateOuverture($dateOuv);
 
@@ -189,11 +196,7 @@ class CompteController extends Controller
 
         $compte->setNumCompte($numAcc);
 
-        $this->_entity->persist($compte);
-
-        $this->_entity->flush();
-
-        return $compte;
+       return  $this->compte->insertCompte($compte);
     }
 
     public  function insertBloque($idEmp,$idAg,$idClient,$dateOuv,$cleRib,$numAcc,$solde,$dateDebloc){
@@ -226,10 +229,9 @@ class CompteController extends Controller
 
         $courant->setSolde($solde);
 
-        $this->_entity->persist($courant);
-        $this->_entity->flush();
+        $id = $this->courant->insertCourant($courant);
 
-        return $courant->getId();
+        return $id;
     }
 
 
@@ -248,68 +250,37 @@ class CompteController extends Controller
     }
 
 
-    private function getNumCompte($choix){
-        switch($choix){
-            case "E": 
-                $num = $this->_entity
-                ->createQuery("SELECT count(c.id) as numero from App\Entity\Comptes c where substring(c.num_compte,1,2)='CE' ")
-                ->getResult();
-
-                foreach($num as $n){
-                    $numero = "CE".((int)$n["numero"] +1);
-                }
-            break;
-            case "B": 
-                $num = $this->_entity
-                ->createQuery("SELECT count(c.id) as numero from App\Entity\Comptes c where substring(c.num_compte,1,2)='CE' ")
-                ->getResult();
-                
-                foreach($num as $n){
-                    $numero = "CB".((int)$n["numero"] +1);
-                }
-            break;
-            case "C": 
-                $num = $this->_entity
-                ->createQuery("SELECT count(c.id) as numero from App\Entity\Comptes c where substring(c.num_compte,1,2)='CC' ")
-                ->getResult();
-                foreach($num as $n){
-                    $numero = "CC".((int)$n["numero"] +1);
-                }
-            break;
-        }
-        return $numero;
-    }
+    
 
     public function insertCompte( ){
 
-        var_dump($_POST);
-        die;
+        // var_dump($_POST);
+        // die;
         extract($_POST);
 
         $id=0;
 
         //fetch the data 
-        $idAg=$request->request->get("idAgence");
+        $idAg=$idAgence;
 
-        $idClient=(int)$request->request->get("idClient");
+        $idClient=(int)$idClient;
 
-        $idEmp=$request->request->get("idEmp");
+        $idEmp=$idEmp;
 
-        $dateOuv = $request->request->get("dateOuvert");
+        $dateOuv = $dateOuvert;
 
-        $cleRib = $request->request->get("cle_rib");
+        $cleRib = $cle_rib;
 
-        $solde = $request->request->get("montant");
+        $solde = $montant;
 
 
-        switch($request->request->get("typeCompte")){
+        switch($typeCompte){
             case "Bloque": 
                 //set the numero of the account 
-                $numAcc = $this->getNumCompte("B");
+                $numAcc =  $this->compte->getNumCompte("B");
 
                 //fetch the data specific for Locked Account
-
-                $dateDebloc = $request->request->get("dateDebloc");
+                $dateDebloc = $dateDebloc;
 
                 //insert in the account bloque 
                 $id=$this->insertBloque($idEmp,$idAg,$idClient,$dateOuv,$cleRib,$numAcc,$solde,$dateDebloc);
@@ -317,7 +288,7 @@ class CompteController extends Controller
 
             case "Epargne": 
                 //set the numero of the account
-                $numAcc = $this->getNumCompte("E");
+                $numAcc = $this->compte->getNumCompte("E");
 
                 //insert in the Epargne account
                 $id=$this->InsertEpargne($idEmp,$idAg,$idClient,$dateOuv,$cleRib,$numAcc,$solde);
@@ -325,12 +296,12 @@ class CompteController extends Controller
 
             case "Courant": 
                 //set the numero of the account 
-                $numAcc = $this->getNumCompte("C");
+                $numAcc = $this->compte->getNumCompte("C");
 
                 //fetch the specific field for epargne account
-                $raison=$request->request->get("raison");
-                $nomEnter=$request->request->get("Name_entreprise");
-                $adresseEnt=$request->request->get("adresse_Entreprise");
+                $raison=$raison;
+                $nomEnter=$Name_entreprise;
+                $adresseEnt=$adresse_Entreprise;
                
                 //insert into the courant account 
                 $id=$this->insertCourant($idEmp,$idAg,$idClient,$dateOuv,$cleRib,$numAcc,$solde,$raison,$nomEnter,$adresseEnt);               
@@ -338,12 +309,12 @@ class CompteController extends Controller
         }
 
         if($id!=0){
-            return $this->redirectToRoute("cniPage");
+            return $this->view->redirect("Pages/getPageCni");
         }else{
-            return $this->redirectToRoute("cniPage");
+            return $this->view->redirect("Pages/getPageCni");
         }
 
-        return $this->redirectToRoute("cniPage");
+       // return $this->redirectToRoute("cniPage");
     }
 
 

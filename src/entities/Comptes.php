@@ -31,19 +31,19 @@ class Comptes
     private $cle_rib;
 
     /**
-     * @ManyToOne(targetEntity=Clients::class)
+     * @ManyToOne(targetEntity="Clients",cascade={"persist"})
      * @JoinColumn(nullable=false)
      */
     private $idClient;
 
     /**
-     * @ManyToOne(targetEntity=Agences::class)
+     * @ManyToOne(targetEntity="Agences",cascade={"persist"})
      * @JoinColumn(nullable=false)
      */
     private $idAgence;
 
     /**
-     * @ManyToOne(targetEntity=ResponsableCompte::class)
+     * @ManyToOne(targetEntity="ResponsableCompte",cascade={"persist"})
      * @JoinColumn(nullable=false)
      */
     private $id_respo_compte;
@@ -89,19 +89,19 @@ class Comptes
         return $this;
     }
 
-    public function getIdClient(): ?Clients
+    public function getIdClient()
     {
         return $this->idClient;
     }
 
-    public function setIdClient(?Clients $idClient): self
+    public function setIdClient($idClient)
     {
         $this->idClient = $idClient;
 
         return $this;
     }
 
-    public function getIdAgence(): ?Agences
+    public function getIdAgence()
     {
         return $this->idAgence;
     }
@@ -113,7 +113,7 @@ class Comptes
         return $this;
     }
 
-    public function getIdRespoCompte(): ?ResponsableCompte
+    public function getIdRespoCompte()
     {
         return $this->id_respo_compte;
     }
