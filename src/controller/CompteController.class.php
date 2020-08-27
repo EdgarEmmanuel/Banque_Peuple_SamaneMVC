@@ -1,90 +1,88 @@
 <?php
+use libs\system\Controller;
 
-namespace App\Controller;
+use src\model\ClientsRepository;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use App\Entity\CompteBloque;
-use App\Entity\CompteCourant;
+use src\model\ClientSalarieRepository;
 
-use App\Entity\Agences;
-use App\Entity\ClientSalarie;
-use App\Entity\ClientMoral;
-use App\Entity\Clients;
-use App\Entity\ClientIndependant;
-use App\Entity\Comptes;
-use App\Entity\ResponsableCompte;
-use App\Entity\CompteEpargne;
-use Symfony\Component\HttpFoundation\Session\Session;
-
-class CompteController extends AbstractController
+class CompteController extends Controller
 {
-    private $_entity;
-    private $SalarieRepository;
     private $ClientM;
     private $ClientI;
     private $agence;
     private $clients;
     private $respo;
 
-    public function __construct(EntityManagerInterface $entity){
-        $this->_entity=$entity;
-        $this->SalarieRepository = $this->_entity->getRepository(ClientSalarie::class);
-        $this->ClientM = $this->_entity->getRepository(ClientMoral::class);
-        $this->ClientI = $this->_entity->getRepository(ClientIndependant::class);
-        $this->agence = $this->_entity->getRepository(Agences::class);
-        $this->clients = $this->_entity->getRepository(Clients::class);
-        $this->respo = $this->_entity->getRepository(ResponsableCompte::class);
+    public function __construct(){
+        parent::__construct();
+        $this->Client = new ClientsRepository;
+        $this->clients = new ClientSalarieRepository;
     }
    
-    public function verifyMatricule(Request $request){
+    public function verifyMatricule(){
+
+        extract($_POST);
+
         //first verify the length
-        if(strlen($request->request->get("matricule")) < 3){
-            return $this->redirectToRoute("cniPage");
+        if(strlen($matricule)<3){
+
+            return $this->view->redirect("Pages/getPageCni");
+            
+
         }else{
             
-            $mat = $request->request->get("matricule")[0].$request->request->get("matricule")[1].$request->request->get("matricule")[2];
+            $mat = $matricule[0].$matricule[1].$matricule[2];
             
             //if the length is good we verify the result of the fisrt three character
             if($mat!="BPS" && $mat!="BCI" && $mat!="BCM"){
+               
 
                         //when it is different we return to the CNI page
-                        return $this->redirectToRoute("cniPage");
+                        return $this->view->redirect("Pages/getPageCni");
 
                     }else{
                        switch($mat){
                            case "BPS": 
 
-                            $data = $this->_entity
-                                    ->createQuery("SELECT cl.id as num from App\Entity\Clients cl where cl.matricule=:mat ")
-                                    ->setParameter('mat',$request->request->get("matricule"))
-                                    ->getResult();
+                           $data = $this->Client->verifyMatBPS($matricule);
 
+                           if($data==null){
+                               
+                               return $this->view->redirect("Pages/getPageCni");
 
+                           }else{
+                              
+                              
                                     //fetch the id 
                                     foreach($data as $d){
-                                        $id = $d["num"];
+                                        $id = $d->getId();
                                     }
 
                             //get the information about the client with the query 
-                            $Nom_complet = $this->SalarieRepository->findoneBy([
-                                'idClient' => $id
-                            ])->getNom() ." ".  $this->SalarieRepository->findoneBy([
-                                'idClient' => $id
-                            ])->getPrenom();
+                            $donnees = $this->clients->getInfoClientById($id,"S");
+
+                            foreach($donnees as $d){
+                                //get the name of the client 
+                                $Nom_complet = $d->getNom()." ".$d->getPrenom();
+                            }
+
+                          
                                     
-                            $ses = new Session();
+                            session_start();
 
                                 //set the name for the name of the client 
-                            $ses->set("nomClient",$Nom_complet);
+                            $_SESSION["nomClient"]=$Nom_complet;
 
 
                             //set the session for the id of the client
-                            $ses->set("idClient",$id);
+                            $_SESSION["idClient"]=$id;
 
                             //redirection 
-                            return $this->redirectToRoute("pageInserCompte");
+                            return $this->view->redirect("Pages/getPageInsertCompte");
+                           }
+
+
+                                    
                            break;
                            case "BCI": 
                                     $data = $this->_entity
@@ -265,10 +263,11 @@ class CompteController extends AbstractController
         return $numero;
     }
 
-    public function insertCompte(Request $request ){
+    public function insertCompte( ){
 
-        // var_dump($request->request);
-        // die;
+        var_dump($_POST);
+        die;
+        extract($_POST);
 
         $id=0;
 

@@ -1,10 +1,11 @@
 <?php 
 namespace src\model;
 
+use Doctrine\ORM\EntityManager;
 use libs\system\Model;
 
 
-class ClientsRepository extends Model{
+class ClientsRepository extends Model{ 
 
     public function __construct(){
         parent::__construct();
@@ -18,7 +19,7 @@ class ClientsRepository extends Model{
         return $client;
     }
 
-   
+    
 
     public function getMatricule($params){
         switch($params){
@@ -54,7 +55,57 @@ class ClientsRepository extends Model{
             break;
 
         }
+
         return $matricule;
+
+    }
+
+
+
+
+    public function verifyMatBPS($matricule){
+        $data = $this->db->getRepository("Clients")->findBy(array
+        (
+            "matricule" => $matricule
+        )
+    );
+       
+        if($data!=null){
+            return $data;
+        }else{
+            return null;
+        }
+    }
+
+
+    public function verifyMatBCI($matricule){
+        $data = $this->db->getRepository("Clients")->findBy(array
+        (
+            "matricule" => $matricule
+        )
+    );
+       
+        if($data!=null){
+            return $data;
+        }else{
+            return null;
+        }
+    }
+
+
+
+    public function verifyMatBCM($matricule){
+        $data = $this->db->getRepository("Clients")->findBy(array
+        (
+            "matricule" => $matricule
+        )
+    );
+       
+        if($data!=null){
+            return $data;
+        }else{
+            return null;
+        }
     }
 
 

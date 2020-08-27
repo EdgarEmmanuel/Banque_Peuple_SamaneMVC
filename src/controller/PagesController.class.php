@@ -44,11 +44,18 @@ class PagesController extends Controller
 
 
     public function getPageInsertCompte(){
+        session_start();
         //default min date 
         $data["min_date"] = \Date("Y-m-d");
 
         //default date deblocage 
         $data["date_debloc"] = \Date("Y-m-d",strtotime('+1 year'));
+
+        $data["nomClient"] = $_SESSION["nomClient"];
+        $data["idClient"] =  $_SESSION["idClient"];
+        $data["nomAgence"]=$_SESSION["nameAgence"];
+        $data["idEmploye"] = $_SESSION["idEmp"];
+        $data["idAgence"] =  $_SESSION["idAgence"];
 
         return $this->view->load("comptes/addCompte",$data);
     }

@@ -18,7 +18,7 @@
      <input type="text" value="Matricule - {$mat}"  id="caissiere" readonly/>
         <a href="{$url_base}Pages/logout" id="a" >Deconnexion</a><br>
         <input type="text" value="Nom Complet - {$name}" id="nom" readonly/><br>
-        <form action="/verifyMat" method="post" id="formGest">
+        <form action="{$url_base}Compte/verifyMatricule" method="post" id="formGest">
             <label id="label"  for="">ANCIEN CLIENT</label><br/>
             <input type="text" placeholder="MATRICULE CLIENT" name="matricule" id="cni" autocomplete="off" required /> <br>
             <button id="verClient" name="btn" value="verify">Verifier</button>

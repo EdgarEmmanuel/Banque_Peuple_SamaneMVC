@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-08-27 10:40:44
+/* Smarty version 3.1.30, created on 2020-08-27 11:22:52
   from "/opt/lampp/htdocs/samaneBanque/src/view/admin/cni.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f47718c030044_47226982',
+  'unifunc' => 'content_5f477b6c3a7472_36255149',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1a800347a5dc312ea04d530ada74673caabce364' => 
     array (
       0 => '/opt/lampp/htdocs/samaneBanque/src/view/admin/cni.html',
-      1 => 1598517635,
+      1 => 1598520167,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f47718c030044_47226982 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f477b6c3a7472_36255149 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -48,7 +48,8 @@ public/favicon.ico" type="image/x-icon"/>
 Pages/logout" id="a" >Deconnexion</a><br>
         <input type="text" value="Nom Complet - <?php echo $_smarty_tpl->tpl_vars['name']->value;?>
 " id="nom" readonly/><br>
-        <form action="/verifyMat" method="post" id="formGest">
+        <form action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+Compte/verifyMatricule" method="post" id="formGest">
             <label id="label"  for="">ANCIEN CLIENT</label><br/>
             <input type="text" placeholder="MATRICULE CLIENT" name="matricule" id="cni" autocomplete="off" required /> <br>
             <button id="verClient" name="btn" value="verify">Verifier</button>
