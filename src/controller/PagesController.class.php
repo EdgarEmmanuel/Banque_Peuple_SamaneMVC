@@ -38,7 +38,7 @@ class PagesController extends Controller
     }
 
     public function logout(){
-        echo "test";
+        return $this->view->load("welcome/index");
     }
 
 
@@ -56,6 +56,7 @@ class PagesController extends Controller
         $data["nomAgence"]=$_SESSION["nameAgence"];
         $data["idEmploye"] = $_SESSION["idEmp"];
         $data["idAgence"] =  $_SESSION["idAgence"];
+        $data["idResp"] = $_SESSION["idRespo"];
 
         return $this->view->load("comptes/addCompte",$data);
     }

@@ -31,6 +31,9 @@ class AgencesRepository extends Model{
         //     $id = $d->getId();
         // }
 
+        // var_dump($data);
+        // die;
+
         return $data;
 
     }

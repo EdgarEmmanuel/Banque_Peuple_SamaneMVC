@@ -31,19 +31,19 @@ class Comptes
     private $cle_rib;
 
     /**
-     * @ManyToOne(targetEntity="Clients",cascade={"persist"})
+     * @ManyToOne(targetEntity="Clients")
      * @JoinColumn(nullable=false)
      */
     private $idClient;
 
     /**
-     * @ManyToOne(targetEntity="Agences",cascade={"persist"})
+     * @ManyToOne(targetEntity="Agences")
      * @JoinColumn(nullable=false)
      */
     private $idAgence;
 
     /**
-     * @ManyToOne(targetEntity="ResponsableCompte",cascade={"persist"})
+     * @ManyToOne(targetEntity="ResponsableCompte")
      * @JoinColumn(nullable=false)
      */
     private $id_respo_compte;

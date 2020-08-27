@@ -1,7 +1,6 @@
 <?php 
 namespace src\model;
 
-use Doctrine\ORM\EntityManager;
 use libs\system\Model;
 
 

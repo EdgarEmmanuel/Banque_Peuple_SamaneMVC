@@ -55,7 +55,7 @@ class ResponsableCompteRepository extends Model{
 
     public function getAllInfoEmp($id){
         if($this->db != null){
-            $data = $this->employesRepo-> getEmployeById($id);
+            $data = $this->employesRepo->getEmployeById($id);
         }
 
         return $data;

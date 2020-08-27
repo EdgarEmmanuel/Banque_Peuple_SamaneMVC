@@ -7,10 +7,11 @@ use src\model\ResponsableCompteRepository;
 
 class UserController extends Controller
 {
-   
+   private  $repository;
 
     public function __construct(){
        parent::__construct();
+       $this->repository = new ResponsableCompteRepository();
     }
 
     
@@ -26,10 +27,10 @@ class UserController extends Controller
                          //get the password from the form 
                          $password = $_POST["password"];
 
-                         $repository = new ResponsableCompteRepository();
+                        
 
                          //fetch with a request from the database 
-                         $data = $repository->getOneByParams($login,$password);
+                         $data =  $this->repository->getOneByParams($login,$password);
 
                          //verify 
                          if($data==null){
@@ -40,15 +41,21 @@ class UserController extends Controller
 
                             foreach($data as $d){
                                 //fetch the ID
-                                $idEmp=$d->getId();
+                                $idEmp=$d->getIdEmploye();
+
+                                $idResp = $d->getId();
 
                                 //fetch the matricule 
                                 $matricule = $d->getMatricule();
                             }
 
-                            //fetch all the info about the Employee
-                            $dataEmployee = $repository->getAllInfoEmp($idEmp);
+                            // var_dump($idEmp);
+                            // die;
 
+                           
+                            //fetch all the info about the Employee
+                            $dataEmployee =  $this->repository->getAllInfoEmp($idEmp);
+                            
 
                             //fetch all the name of the 
                             $NomComplet = $dataEmployee->getNom()."".$dataEmployee->getPrenom();
@@ -59,7 +66,7 @@ class UserController extends Controller
 
 
                             //fetch all the Info by idAgence
-                            $dataAgence = $repository-> getAgenceByEmploye($idAgence);
+                            $dataAgence =  $this->repository->getAgenceByEmploye($idAgence);
 
 
                             //get the name of the Agence 
@@ -77,6 +84,8 @@ class UserController extends Controller
                             $_SESSION["idAgence"] = $idAgence;
 
                             $_SESSION["nomEmp"] =  $NomComplet;
+
+                            $_SESSION["idRespo"] = $idResp;
 
                             $_SESSION["nameAgence"] = $nameAgence;
 

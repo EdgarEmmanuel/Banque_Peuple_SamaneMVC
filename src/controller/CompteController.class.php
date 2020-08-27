@@ -13,6 +13,8 @@ use src\model\ResponsableCompteRepository;
 
 use src\model\CompteCourantRepository;
 
+use src\model\CompteBloqueRepository;
+
 class CompteController extends Controller
 {
     private $ClientM;
@@ -21,6 +23,7 @@ class CompteController extends Controller
     private $compte;
     private $respo;
     private $courant;
+    private $bloque;
 
     public function __construct(){
         parent::__construct();
@@ -30,6 +33,7 @@ class CompteController extends Controller
         $this->agence = new AgencesRepository;
         $this->respo = new ResponsableCompteRepository;
         $this->courant = new CompteCourantRepository;
+        $this->bloque = new CompteBloqueRepository;
     }
    
     public function verifyMatricule(){
@@ -188,7 +192,7 @@ class CompteController extends Controller
 
         $compte->setIdClient($this->Client->find($idClient));
 
-        $compte->setIdRespoCompte($this->respo->getRespoById($idEmp));
+        $compte->setIdRespoCompte($this->respo->getRespoById((int)$idEmp));
 
         $compte->setDateOuverture($dateOuv);
 
@@ -202,16 +206,16 @@ class CompteController extends Controller
     public  function insertBloque($idEmp,$idAg,$idClient,$dateOuv,$cleRib,$numAcc,$solde,$dateDebloc){
         $bloque = new CompteBloque();
 
-        $bloque->setIdCompte($this->insertInCompte($idEmp,$idAg,$idClient,$dateOuv,$cleRib,$numAcc));
+        $bloque->setIdCompte($this->insertInCompte($idEmp,$idAg,$idClient
+        ,$dateOuv,$cleRib,$numAcc));
 
         $bloque->setSolde($solde);
 
         $bloque->setDateDeblocage($dateDebloc);
 
-        $this->_entity->persist($bloque);
-        $this->_entity->flush();
+        $id=$this->bloque->addBloque($bloque);
 
-        return $bloque->getId();
+        return $id;
     }
 
 

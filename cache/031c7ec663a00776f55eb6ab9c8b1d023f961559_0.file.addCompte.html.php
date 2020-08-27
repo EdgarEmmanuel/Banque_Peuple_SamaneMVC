@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-08-27 12:18:01
+/* Smarty version 3.1.30, created on 2020-08-27 16:36:18
   from "/opt/lampp/htdocs/samaneBanque/src/view/comptes/addCompte.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f478859bfcc10_00172423',
+  'unifunc' => 'content_5f47c4e2764c52_52660446',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '031c7ec663a00776f55eb6ab9c8b1d023f961559' => 
     array (
       0 => '/opt/lampp/htdocs/samaneBanque/src/view/comptes/addCompte.html',
-      1 => 1598523478,
+      1 => 1598538973,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f478859bfcc10_00172423 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f47c4e2764c52_52660446 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -95,7 +95,7 @@ Compte/insertCompte"  method="post">
     
                 <input type="number" name="idAgence" value="<?php echo $_smarty_tpl->tpl_vars['idAgence']->value;?>
 " hidden />
-                 <input type="number" name="idEmp" value="<?php echo $_smarty_tpl->tpl_vars['idEmploye']->value;?>
+                 <input type="number" name="idEmp" value="<?php echo $_smarty_tpl->tpl_vars['idResp']->value;?>
 " hidden/>
                  <input type="text" name="idClient"
                  value="<?php echo $_smarty_tpl->tpl_vars['idClient']->value;?>
