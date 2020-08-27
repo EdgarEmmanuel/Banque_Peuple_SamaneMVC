@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-08-27 12:11:23
+/* Smarty version 3.1.30, created on 2020-08-27 12:18:01
   from "/opt/lampp/htdocs/samaneBanque/src/view/comptes/addCompte.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f4786cbe43507_79718519',
+  'unifunc' => 'content_5f478859bfcc10_00172423',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '031c7ec663a00776f55eb6ab9c8b1d023f961559' => 
     array (
       0 => '/opt/lampp/htdocs/samaneBanque/src/view/comptes/addCompte.html',
-      1 => 1598523020,
+      1 => 1598523478,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f4786cbe43507_79718519 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f478859bfcc10_00172423 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -39,7 +39,8 @@ public/favicon.ico" type="image/x-icon"/>
     
     <header>
         <div class="brand">
-            <h1>BANQUE DU PEUPLE<a href="/admin/cni.html">ANNULER</a></h1>
+            <h1>BANQUE DU PEUPLE<a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+Pages/getPageCni">ANNULER</a></h1>
         </div>
     </header>
     <main>

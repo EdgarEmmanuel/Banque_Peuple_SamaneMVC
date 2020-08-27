@@ -18,28 +18,7 @@ class ClientSalarieRepository extends Model{
     }
 
 
-    public function getInfoClientById($id,$string){
-        switch($string){
-            case "S": 
-                $data = $this->db->getRepository("ClientSalarie")->findBy([
-                    'idClient' => $id
-                ]);
-            break;
-            case "M": 
-                $data = $this->db->getRepository("ClientMoral")->findBy([
-                    'idClient' => $id
-                ]);
-            break;
-            case "I": 
-                    $data = $this->db->getRepository("ClientIndependant")->findBy([
-                        'idClient' => $id
-                    ]);
-            break;
-        }
-        
-
-       return $data;
-    }
+    
 }
 
 

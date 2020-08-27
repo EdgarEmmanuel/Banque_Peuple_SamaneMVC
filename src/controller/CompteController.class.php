@@ -59,7 +59,7 @@ class CompteController extends Controller
                                     }
 
                             //get the information about the client with the query 
-                            $donnees = $this->clients->getInfoClientById($id,"S");
+                            $donnees = $this->Client->getInfoClientById($id,"S");
 
                             foreach($donnees as $d){
                                 //get the name of the client 
@@ -85,65 +85,82 @@ class CompteController extends Controller
                                     
                            break;
                            case "BCI": 
-                                    $data = $this->_entity
-                                    ->createQuery("SELECT cl.id as num from App\Entity\Clients cl where cl.matricule=:mat ")
-                                    ->setParameter('mat',$request->request->get("matricule"))
-                                    ->getResult();
+                            $data = $this->Client->verifyMatBCI($matricule);
+
+                            if($data==null){
+                               
+                                return $this->view->redirect("Pages/getPageCni");
+ 
+                            }else{
 
 
-                                    //fetch the id
-                                    foreach($data as $d){
-                                        $id = $d["num"];
-                                    }
-
-                                    //get the information about the client with the query 
-                                    $Nom_complet = $this->ClientI->findoneBy([
-                                        'idClient' => $id
-                                    ])->getNom() ." ".  $this->ClientI->findoneBy([
-                                        'idClient' => $id
-                                    ])->getPrenom();
-                                            
-                                    $ses = new Session();
-
-                                        //set the name for the name of the client 
-                                    $ses->set("nomClient",$Nom_complet);
-
-
-                                    //set the session for the id of the client
-                                    $ses->set("idClient",$id);
-
-                                    //redirection 
-                                    return $this->redirectToRoute("pageInserCompte");
-                            break;
-
-                           case "BCM":
-                                $data = $this->_entity
-                                ->createQuery("SELECT cl.id as num from App\Entity\Clients cl where cl.matricule=:mat ")
-                                ->setParameter('mat',$request->request->get("matricule"))
-                                ->getResult();
-
-
-                                //fetch the id
-                                foreach($data as $d){
-                                    $id = $d["num"];
+                                  //fetch the id 
+                                  foreach($data as $d){
+                                    $id = $d->getId();
                                 }
 
                                 //get the information about the client with the query 
-                                $Nom_complet = $this->ClientM->findoneBy([
-                                    'idClient' => $id
-                                ])->getNomEntreprise();
+                                $donnees = $this->Client->getInfoClientById($id,"I");
+
+                                foreach($donnees as $d){
+                                    //get the name of the client 
+                                    $Nom_complet = $d->getNom()." ".$d->getPrenom();
+                                }
                                         
-                                $ses = new Session();
+                                session_start();
 
-                                    //set the name for the name of the client 
-                                $ses->set("nomClient",$Nom_complet);
+                                   //set the name for the name of the client 
+                                    $_SESSION["nomClient"]=$Nom_complet;
 
 
-                                //set the session for the id of the client
-                                $ses->set("idClient",$id);
+                                    //set the session for the id of the client
+                                    $_SESSION["idClient"]=$id;
 
-                                //redirection 
-                                return $this->redirectToRoute("pageInserCompte");
+                                    //redirection 
+                                    return $this->view->redirect("Pages/getPageInsertCompte");
+
+
+
+
+
+                            }
+
+                            break;
+
+                           case "BCM":
+                                $data = $this->Client->verifyMatBCM($matricule);
+
+                                if($data==null){
+                                    return $this->view->redirect("Pages/getPageCni");
+                                }else{
+                                   
+                                        //fetch the id
+                                        foreach($data as $d){
+                                            $id = $d->getId();
+                                        }
+
+                                          //get the information about the client with the query 
+                                        $donnees = $this->Client->getInfoClientById($id,"M");
+
+                                        foreach($donnees as $da){
+                                            $Nom_complet = $da->getNomEntreprise();
+                                        }
+                                                
+                                        session_start();
+
+                                            //set the name for the name of the client 
+                                        $_SESSION["nomClient"]=$Nom_complet;
+
+
+                                        //set the session for the id of the client
+                                        $_SESSION["idClient"]=$id;
+
+                                        //redirection 
+                                        return $this->view->redirect("Pages/getPageInsertCompte");
+                                }
+
+
+                                
                            break;
                        }
                     }

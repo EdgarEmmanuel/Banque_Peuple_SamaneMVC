@@ -9,7 +9,7 @@ class ClientIndependantRepository extends Model{
     public function __construct(){
         parent::__construct();
     }
-
+ 
 
     public function insertIndependant($independant){
         $this->db->persist($independant);
